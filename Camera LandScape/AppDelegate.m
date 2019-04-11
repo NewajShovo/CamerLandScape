@@ -20,14 +20,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [ [ UIWindow alloc] initWithFrame:[ [ UIScreen mainScreen] bounds]];
-    
+
     CameraViewController *item = [ [ CameraViewController alloc] init];
    UINavigationController *navController = [ [ UINavigationController alloc] initWithRootViewController:item];
     self.window.rootViewController = navController;
     self.window.backgroundColor = [ UIColor whiteColor];
     [ self.window makeKeyAndVisible];
     return YES;
-    //return YES;
+    return YES;
 }
 
 

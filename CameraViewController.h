@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CameraViewController : UIViewController <AVCapturePhotoCaptureDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface CameraViewController : UIViewController <AVCapturePhotoCaptureDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *CameraView;
 - (IBAction)Buttonclicked:(id)sender;
 //@property (strong, nonatomic) IBOutlet UIImageView *ImageView;

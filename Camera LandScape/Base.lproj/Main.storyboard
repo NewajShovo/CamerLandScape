@@ -23,12 +23,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyP-f7-fbT">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAc-ZJ-mzs">
-                                                <rect key="frame" x="87" y="167" width="240" height="320"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.16424211490000001" green="0.3088736675" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOM-wE-X0c" userLabel="base">
@@ -524,7 +518,6 @@
                     </view>
                     <connections>
                         <outlet property="CameraView" destination="vyP-f7-fbT" id="2cv-Yq-ubl"/>
-                        <outlet property="ImageView" destination="ZAc-ZJ-mzs" id="dd5-z9-fwc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
