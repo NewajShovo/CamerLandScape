@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CameraViewController : UIViewController <AVCapturePhotoCaptureDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *CameraView;
 - (IBAction)Buttonclicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *camButton;
+@property (weak, nonatomic) IBOutlet UIButton *videoButton;
+
 //@property (strong, nonatomic) IBOutlet UIImageView *ImageView;
 @end
 
