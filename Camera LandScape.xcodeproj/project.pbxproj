@@ -16,10 +16,13 @@
 		A0AE89D4225B45DA00D271B2 /* Camera_LandScapeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AE89D3225B45DA00D271B2 /* Camera_LandScapeUITests.m */; };
 		A0AE89E2225B50F800D271B2 /* 1-Camera view in Resources */ = {isa = PBXBuildFile; fileRef = A0AE89E1225B50F800D271B2 /* 1-Camera view */; };
 		A0B02720225C95B9003DDD32 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B0271F225C95B9003DDD32 /* AVFoundation.framework */; };
+		A0BB02F2226454380059A3FC /* vedioShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BB02F0226454380059A3FC /* vedioShowViewController.m */; };
+		A0BB02F3226454380059A3FC /* vedioShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BB02F1226454380059A3FC /* vedioShowViewController.xib */; };
 		A0D61CB9225DB28500ADE3F4 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D61CB7225DB28500ADE3F4 /* CameraViewController.m */; };
 		A0D61CBA225DB28500ADE3F4 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D61CB8225DB28500ADE3F4 /* CameraViewController.xib */; };
 		A0D61CBE225DBE0300ADE3F4 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D61CBC225DBE0300ADE3F4 /* ImageViewController.m */; };
 		A0D61CBF225DBE0300ADE3F4 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D61CBD225DBE0300ADE3F4 /* ImageViewController.xib */; };
+		A0E3DAD622649B5900DED80C /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E3DAD522649B5900DED80C /* PlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +59,17 @@
 		A0AE89D5225B45DA00D271B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0AE89E1225B50F800D271B2 /* 1-Camera view */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "1-Camera view"; sourceTree = "<group>"; };
 		A0B0271F225C95B9003DDD32 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A0BB02EF226454380059A3FC /* vedioShowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vedioShowViewController.h; sourceTree = "<group>"; };
+		A0BB02F0226454380059A3FC /* vedioShowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vedioShowViewController.m; sourceTree = "<group>"; };
+		A0BB02F1226454380059A3FC /* vedioShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vedioShowViewController.xib; sourceTree = "<group>"; };
 		A0D61CB6225DB28500ADE3F4 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = ../CameraViewController.h; sourceTree = "<group>"; };
 		A0D61CB7225DB28500ADE3F4 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = ../CameraViewController.m; sourceTree = "<group>"; };
 		A0D61CB8225DB28500ADE3F4 /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CameraViewController.xib; path = ../CameraViewController.xib; sourceTree = "<group>"; };
 		A0D61CBB225DBE0300ADE3F4 /* ImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		A0D61CBC225DBE0300ADE3F4 /* ImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		A0D61CBD225DBE0300ADE3F4 /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		A0E3DAD422649B5900DED80C /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		A0E3DAD522649B5900DED80C /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +129,13 @@
 				A0D61CB7225DB28500ADE3F4 /* CameraViewController.m */,
 				A0D61CB8225DB28500ADE3F4 /* CameraViewController.xib */,
 				A0D61CBB225DBE0300ADE3F4 /* ImageViewController.h */,
+				A0BB02EF226454380059A3FC /* vedioShowViewController.h */,
+				A0BB02F0226454380059A3FC /* vedioShowViewController.m */,
+				A0BB02F1226454380059A3FC /* vedioShowViewController.xib */,
 				A0D61CBC225DBE0300ADE3F4 /* ImageViewController.m */,
 				A0D61CBD225DBE0300ADE3F4 /* ImageViewController.xib */,
+				A0E3DAD422649B5900DED80C /* PlayerView.h */,
+				A0E3DAD522649B5900DED80C /* PlayerView.m */,
 				A0AE89B8225B45DA00D271B2 /* Assets.xcassets */,
 				A0AE89E1225B50F800D271B2 /* 1-Camera view */,
 				A0AE89BA225B45DA00D271B2 /* LaunchScreen.storyboard */,
@@ -266,6 +279,7 @@
 				A0AE89B7225B45D900D271B2 /* Main.storyboard in Resources */,
 				A0AE89E2225B50F800D271B2 /* 1-Camera view in Resources */,
 				A0D61CBF225DBE0300ADE3F4 /* ImageViewController.xib in Resources */,
+				A0BB02F3226454380059A3FC /* vedioShowViewController.xib in Resources */,
 				A0D61CBA225DB28500ADE3F4 /* CameraViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +306,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0D61CB9225DB28500ADE3F4 /* CameraViewController.m in Sources */,
+				A0E3DAD622649B5900DED80C /* PlayerView.m in Sources */,
+				A0BB02F2226454380059A3FC /* vedioShowViewController.m in Sources */,
 				A0AE89BF225B45DA00D271B2 /* main.m in Sources */,
 				A0D61CBE225DBE0300ADE3F4 /* ImageViewController.m in Sources */,
 				A0AE89B1225B45D900D271B2 /* AppDelegate.m in Sources */,

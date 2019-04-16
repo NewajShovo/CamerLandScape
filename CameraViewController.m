@@ -11,6 +11,8 @@
 #import "ImageViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVKit/AVKit.h>
+#import "vedioShowViewController.h"
+#import <AudioToolbox/AudioFile.h>
 
 @interface CameraViewController ()
 @property (nonatomic) AVCaptureSession *session;
@@ -27,6 +29,8 @@
 @property (nonatomic) int timeSec;
 @property (nonatomic) int timeMin;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong,nonatomic) vedioShowViewController *vedioController;
+///@property (weak,nonatomic) NSString *tempString;
 
 @end
 
@@ -34,8 +38,9 @@
 int a=0;
 BOOL Button;
 BOOL WeAreRecording;
+NSString *tempString;
 @synthesize CameraView;
-@synthesize session,previewLayer,device,input,output,MovieFileOutput;
+@synthesize session,previewLayer,device,input,output,MovieFileOutput,vedioController;
 
 #pragma mark - rotation will stop
 -(BOOL)shouldAutorotate{
@@ -65,6 +70,35 @@ BOOL WeAreRecording;
         NSLog(@"No Input");
     }
     
+    
+    // Configure the audio session
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [audioSession setActive:YES error:nil];
+    
+    // Find the desired input port
+    NSArray* inputs = [audioSession availableInputs];
+    AVAudioSessionPortDescription *builtInMic = nil;
+    for (AVAudioSessionPortDescription* port in inputs) {
+        if ([port.portType isEqualToString:AVAudioSessionPortBuiltInMic]) {
+            builtInMic = port;
+            break;
+        }
+    }
+    
+    // Find the desired microphone
+    for (AVAudioSessionDataSourceDescription* source in builtInMic.dataSources) {
+        if ([source.orientation isEqual:AVAudioSessionOrientationFront]) {
+            [builtInMic setPreferredDataSource:source error:nil];
+            [audioSession setPreferredInput:builtInMic error:nil];
+            break;
+        }
+    }
+    
+    
+    
+    //[session addInput:audioSession];
+    //[session addInput:];
     [session addInput:input];
     [session addInput:_input1];
     output = [[AVCapturePhotoOutput alloc] init];
@@ -158,8 +192,10 @@ BOOL WeAreRecording;
     [output capturePhotoWithSettings:photoSettings  delegate:self];
 }
 
-#pragma mark - Button clicked
+#pragma mark - Button clicked plus vedio
 - (IBAction)Buttonclicked:(id)sender {
+      
+   self->vedioController = [ [vedioShowViewController alloc] init];
     if(Button)
     {
         [self photoCaputuring];
@@ -182,6 +218,9 @@ BOOL WeAreRecording;
             [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
             
             NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@",NSTemporaryDirectory(), @"output.mov"];
+            tempString = outputPath;
+            vedioController.outputPath1=tempString;
+            NSLog(@"%@",vedioController.outputPath1);
             NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if ([fileManager fileExistsAtPath:outputPath])
@@ -199,9 +238,13 @@ BOOL WeAreRecording;
             
         } else
         {
+          
+
             NSLog(@"Stop Recording");
             [MovieFileOutput stopRecording];
             WeAreRecording = NO;
+            
+            
         }
     }
     
@@ -229,6 +272,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     }
     if (RecordedSuccessfully)
     {
+        
         //----- RECORDED SUCESSFULLY -----
         NSLog(@"didFinishRecordingToOutputFileAtURL - success");
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -261,11 +305,15 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
                      playerViewController.player.volume = 0;
                      [playVideo play];
                      [playVideo pause];
-                     //playerViewController.view.frame = self.view.bounds;
-                     [self presentViewController:playerViewController animated:NO completion:nil];
-//                    [self addChildViewController:playerViewController anima];
-//                    [self.view addSubview:playerViewController.view];
-//                  ///   [self presentationController: playerViewController animated:YES completion:nil];
+            
+    
+                     
+                     // [self presentViewController:playerViewController animated:NO completion:nil];
+                     
+                     NSLog(@"%@",tempString);
+                     
+                     vedioController.outputPath1 = tempString; 
+                     [self.navigationController pushViewController:vedioController animated:YES];
                   
                      
                      
