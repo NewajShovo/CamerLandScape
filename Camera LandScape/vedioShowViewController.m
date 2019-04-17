@@ -18,6 +18,12 @@
 @property (strong,nonatomic) AVAsset *currentAsset;
 @property (weak, nonatomic) IBOutlet UISlider *progressBar;
 
+//@property (weak, nonatomic) AVMutableComposition *composition;
+@property (weak, nonatomic) AVMutableComposition *mixAsset;
+@property (weak, nonatomic) AVMutableCompositionTrack *videotrack;
+@property (weak, nonatomic) AVMutableCompositionTrack *audiotrack;
+
+
 @end
 
 @implementation vedioShowViewController
@@ -25,17 +31,120 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     Label.text=outputPath1;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     NSURL *fileURL =[ [NSURL alloc] initFileURLWithPath:outputPath1];
-    _currentAsset = [AVAsset assetWithURL:fileURL];
+//    _currentAsset = [AVAsset assetWithURL:fileURL];
     ///NSLog(@"%@",_currentAsset);
-    self.playerItem = [AVPlayerItem playerItemWithAsset:_currentAsset];
+//    self.playerItem = [AVPlayerItem playerItemWithAsset:_currentAsset];
+   
+    
+    NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"Toccata-and-Fugue-Dm.mp3" withExtension:nil];
+    
+    /*
+    AVAsset *audioAsset = [ AVAsset assetWithURL:audioURL];
+    AVAsset *videoAsset = [AVAsset assetWithURL:fileURL];
+    NSLog(@"%@",videoAsset);
+    CGAffineTransform txf = [videoAsset preferredTransform];
+    CMTime duration = [videoAsset duration];
+    
+    
+    NSError *error;
+    
+    AVMutableComposition* mixAsset = [AVMutableComposition composition];
+    
+    AVMutableCompositionTrack* audioTrack = [mixAsset addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] lastObject] atTime:kCMTimeZero error: &error];
+    
+    AVMutableCompositionTrack* videoTrack = [mixAsset addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] lastObject] atTime:kCMTimeZero error: &error];
+    
+    CGSize size = [ videoTrack naturalSize];
+*/
+    
+    NSError *error = nil;
+    AVURLAsset *videoAssetURL = [[AVURLAsset alloc] initWithURL:fileURL options:nil];
+    AVURLAsset *audioAssetURL = [ [ AVURLAsset alloc] initWithURL:audioURL options:nil];
+    
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    AVMutableCompositionTrack *compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    AVAssetTrack *videoTrack = [[videoAssetURL tracksWithMediaType:AVMediaTypeVideo] firstObject];
+    AVAssetTrack *audioTrack = [[audioAssetURL tracksWithMediaType:AVMediaTypeAudio] firstObject];
+    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetURL.duration) ofTrack:videoTrack atTime:kCMTimeZero error:&error];
+    if (videoTrack && compositionVideoTrack) {
+        [compositionVideoTrack setPreferredTransform:videoTrack.preferredTransform];
+    }
+    //CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI);
+  //  videoTrack.preferredTransform = CGAffineTransformMakeRotation(M_PI);
+    //videoTrack.prefferedTransform =
+    [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetURL.duration) ofTrack:audioTrack atTime:kCMTimeZero error:&error];
+    
+    /*
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetMediumQuality];
+    
+    exportSession.outputURL = fileURL;
+    NSLog(@"%@",exportSession.outputURL);
+    exportSession.outputFileType = AVFileTypeQuickTimeMovie; //very important select you video format (AVFileTypeQuickTimeMovie, AVFileTypeMPEG4, etc...)
+    exportSession.videoComposition = videoComposition;
+    exportSession.shouldOptimizeForNetworkUse = NO;
+    exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, videoAssetURL.duration);
+    
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        
+        switch ([exportSession status]) {
+                
+            case AVAssetExportSessionStatusCompleted: {
+                
+                NSLog(@"Triming Completed");
+                
+                //generate video thumbnail
+                ///self.videoUrl = exportSession.outputURL;
+                AVURLAsset *videoAssetURL = [[AVURLAsset alloc] initWithURL:fileURL options:nil];
+                AVAssetImageGenerator *genrateAsset = [[AVAssetImageGenerator alloc] initWithAsset:videoAssetURL];
+                genrateAsset.appliesPreferredTrackTransform = YES;
+                CMTime time = CMTimeMakeWithSeconds(0.0,600);
+                NSError *error = nil;
+                CMTime actualTime;
+                
+                CGImageRef cgImage = [genrateAsset copyCGImageAtTime:time actualTime:&actualTime error:&error];
+                //self.videoImage = [[UIImage alloc] initWithCGImage:cgImage];
+                CGImageRelease(cgImage);
+                
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }];
+    
+    
+    */
+    
+    
+    _playerItem = [AVPlayerItem playerItemWithAsset:composition];
     _player = [AVPlayer playerWithPlayerItem:self.playerItem];
     _playerView.player = _player;
     self.playAndPausButton.hidden = NO;
     [_progressBar setValue:0];
+    
+    
    
 }
-#pragma mark -player Itme duration
+#pragma mark -player Item duration
 - (CMTime)playerItemDuration
 {
     AVPlayerItem *thePlayerItem = [_player currentItem];
@@ -74,6 +183,9 @@
         [_progressBar setValue:time];
         if([_progressBar value]==[_progressBar maximumValue])
         {
+            [_progressBar setValue:0];
+            CMTime targetTime=CMTimeMakeWithSeconds(0, NSEC_PER_SEC);
+            [self.player seekToTime:targetTime toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
             [ self playAndPauseControll:_playAndPausButton withButtonState:1];
         }
     }
@@ -83,6 +195,9 @@
     UIButton* mybtn = ( UIButton* )sender;
     if([_progressBar value]==[_progressBar maximumValue])
     {
+        [ _progressBar setValue:0];
+        CMTime targetTime=CMTimeMakeWithSeconds(0, NSEC_PER_SEC);
+         [self.player seekToTime:targetTime toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
         [ self playAndPauseControll:_playAndPausButton withButtonState:1];
     }
     else{
@@ -166,9 +281,14 @@
             toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     if([_progressBar value]==[_progressBar maximumValue])
     {
-         [ self playAndPauseControll:_playAndPausButton withButtonState:1];
+        [_progressBar setValue:0];
+        targetTime=CMTimeMakeWithSeconds(0, NSEC_PER_SEC);
+        [self.player seekToTime:targetTime toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+        ///[_player currentTime:0]
+        [ self playAndPauseControll:_playAndPausButton withButtonState:1];
     }
 }
+
 
 
 

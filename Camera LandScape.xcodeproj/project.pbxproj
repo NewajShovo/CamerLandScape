@@ -23,6 +23,7 @@
 		A0D61CBE225DBE0300ADE3F4 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D61CBC225DBE0300ADE3F4 /* ImageViewController.m */; };
 		A0D61CBF225DBE0300ADE3F4 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D61CBD225DBE0300ADE3F4 /* ImageViewController.xib */; };
 		A0E3DAD622649B5900DED80C /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E3DAD522649B5900DED80C /* PlayerView.m */; };
+		A0F75E62226610B7008F5B52 /* Toccata-and-Fugue-Dm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A0F75E61226610B6008F5B52 /* Toccata-and-Fugue-Dm.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		A0D61CBD225DBE0300ADE3F4 /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		A0E3DAD422649B5900DED80C /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 		A0E3DAD522649B5900DED80C /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		A0F75E61226610B6008F5B52 /* Toccata-and-Fugue-Dm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Toccata-and-Fugue-Dm.mp3"; path = "../../../Downloads/Toccata-and-Fugue-Dm.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				A0AE89AF225B45D900D271B2 /* AppDelegate.h */,
 				A0AE89B0225B45D900D271B2 /* AppDelegate.m */,
 				A0AE89B5225B45D900D271B2 /* Main.storyboard */,
+				A0F75E61226610B6008F5B52 /* Toccata-and-Fugue-Dm.mp3 */,
 				A0D61CB6225DB28500ADE3F4 /* CameraViewController.h */,
 				A0D61CB7225DB28500ADE3F4 /* CameraViewController.m */,
 				A0D61CB8225DB28500ADE3F4 /* CameraViewController.xib */,
@@ -278,6 +281,7 @@
 				A0AE89B9225B45DA00D271B2 /* Assets.xcassets in Resources */,
 				A0AE89B7225B45D900D271B2 /* Main.storyboard in Resources */,
 				A0AE89E2225B50F800D271B2 /* 1-Camera view in Resources */,
+				A0F75E62226610B7008F5B52 /* Toccata-and-Fugue-Dm.mp3 in Resources */,
 				A0D61CBF225DBE0300ADE3F4 /* ImageViewController.xib in Resources */,
 				A0BB02F3226454380059A3FC /* vedioShowViewController.xib in Resources */,
 				A0D61CBA225DB28500ADE3F4 /* CameraViewController.xib in Resources */,
